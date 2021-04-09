@@ -30,7 +30,7 @@ namespace Bot.Services
             builder.AddField("Quality", message.movieFile.quality, true);
             builder.AddField("Release Group", message.movieFile.releaseGroup, true);
             builder.AddField("Release Date", message.movie.releaseDate, true);
-            builder.AddField("Original Scene Name", message.movieFile.sceneName);
+            builder.AddField("Original Scene Name", message.movieFile.sceneName ?? message.movieFile.relativePath);
 
             return builder.Build();
         }
