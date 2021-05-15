@@ -24,6 +24,13 @@ namespace Bot.Controllers
             this.requestbinService = requestbinService;
         }
 
+        [HttpGet("lookup/{searchTerm}")]
+        public async Task<IActionResult> GetSearch(string searchTerm)
+        {
+            var result = await radarrService.Lookup(searchTerm);
+            return new OkObjectResult(result);
+        }
+
         [HttpPost("tvshows")]
         public async Task PostTvshow([FromBody] SonarrMessage message)
         {

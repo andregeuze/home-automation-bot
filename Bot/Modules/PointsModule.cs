@@ -43,7 +43,7 @@ namespace Bot.Modules
             embed.AddField("Points", points);
             // Levels?
 
-            await ReplyAsync("", embed: embed.Build());
+            await ReplyAsync(embed: embed.Build());
         }
     }
 }

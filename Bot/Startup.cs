@@ -9,8 +9,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using System;
-using System.Reflection;
-using System.Threading.Tasks;
 
 namespace Bot
 {
@@ -31,11 +29,13 @@ namespace Bot
                 .Configure<LiteDbOptions>(Configuration.GetSection(nameof(LiteDbOptions)))
                 .Configure<OmdbServiceOptions>(Configuration.GetSection(nameof(OmdbServiceOptions)))
                 .Configure<AutomationWorkerOptions>(Configuration.GetSection(nameof(AutomationWorkerOptions)))
-                .Configure<RequestbinServiceOptions>(Configuration.GetSection(nameof(RequestbinServiceOptions)));
+                .Configure<RequestbinServiceOptions>(Configuration.GetSection(nameof(RequestbinServiceOptions)))
+                .Configure<RadarrServiceOptions>(Configuration.GetSection(nameof(RadarrServiceOptions)));
 
             // Http Clients
             services.AddHttpClient<OmdbService>(c => c.Timeout = TimeSpan.FromSeconds(5));
             services.AddHttpClient<RequestbinService>(c => c.Timeout = TimeSpan.FromSeconds(5));
+            services.AddHttpClient<RadarrService>(c => c.Timeout = TimeSpan.FromSeconds(5));
 
             // Command service for Discord.Net
             services.AddSingleton<DiscordSocketClient>();
